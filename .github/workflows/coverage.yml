@@ -40,7 +40,7 @@ jobs:
         
     - name: Run test suite
       run: |
-        python -m pytest --cov=redmail --cov-report=xml redmail/test
+        python -m pytest --cov=flask-redmail --cov-report=xml flask-redmail/test
         
     - name: Upload test coverage
       uses: codecov/codecov-action@v2
