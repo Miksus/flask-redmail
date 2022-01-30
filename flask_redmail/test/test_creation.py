@@ -18,11 +18,11 @@ def test_creation():
 
 def test_with_context():
     app = Flask("pytest")
-    app.config["SMTP_HOST"] = "localhost"
-    app.config["SMTP_PORT"] = 0
-    app.config["SMTP_USER"] = "me@example.com"
-    app.config["SMTP_PASSWORD"] = "1234"
-    app.config["SMTP_SENDER"] = "no-reply@example.com"
+    app.config["EMAIL_HOST"] = "localhost"
+    app.config["EMAIL_PORT"] = 0
+    app.config["EMAIL_USER"] = "me@example.com"
+    app.config["EMAIL_PASSWORD"] = "1234"
+    app.config["EMAIL_SENDER"] = "no-reply@example.com"
 
     email = RedMail()
     email.init_app(app)
