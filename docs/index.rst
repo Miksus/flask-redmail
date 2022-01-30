@@ -3,7 +3,7 @@
    :description: Red Mail is an advanced email sender for Python. It is open source and well tested.
    :keywords: send, email, Python, Flask
 
-Flask :red:`Red` Mail: Email sending for Flask
+Flask Red Mail: Email sending for Flask
 ===================================================
 
 Red Mail is an advanced Python library for sending emails. 

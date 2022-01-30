@@ -10,7 +10,8 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import sphinx_rtd_theme
+# import sphinx_rtd_theme
+import pallets_sphinx_themes
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
@@ -33,7 +34,8 @@ extensions = [
     'sphinx.ext.autodoc', 
     'sphinx.ext.coverage', 
     'sphinx.ext.napoleon',
-    'sphinx_rtd_theme'
+    #'sphinx_rtd_theme',
+    'pallets_sphinx_themes',
 ]
 rst_prolog = """
 .. include:: <s5defs.txt>
@@ -60,8 +62,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_logo = "logo.png"
 html_theme_options = {
-    'logo_only': True,
-    'display_version': False,
+    #'logo_only': True,
+    #'display_version': False,
 }
 
 # -- Options for HTML output -------------------------------------------------
@@ -70,7 +72,7 @@ html_theme_options = {
 # a list of builtin themes.
 #
 html_title = "Email sending for Flask"
-html_theme = 'sphinx_rtd_theme'
+html_theme = 'flask'
 html_favicon = 'favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
