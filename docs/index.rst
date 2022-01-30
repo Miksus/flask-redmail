@@ -6,7 +6,19 @@
 Flask Red Mail: Email sending for Flask
 ===================================================
 
-Red Mail is an advanced Python library for sending emails. 
+Flask Red Mail is a Flask extension for Red Mail.
+Red Mail is a powerful email sending library which 
+makes sending emails with attachments, embedded images
+or templated HTML easy.
+
+It makes easy to:
+
+- Send verification emails to users
+- Create email based *forgot password* functionality
+- Create Flask based email news letters
+
+Read more from Red Mail from `its official documentation <https://red-mail.readthedocs.io/en/latest/>`_
+or visit `the source code <https://github.com/Miksus/red-mail>`_
 
 Installation
 ------------
@@ -55,6 +67,12 @@ Then you may send emails:
             """
         )
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   tutorial
+   cookbook
 
 Indices and tables
 ==================
