@@ -9,8 +9,9 @@
 [![codecov](https://codecov.io/gh/Miksus/flask-redmail/branch/master/graph/badge.svg?token=IMR1CQT9PY)](https://codecov.io/gh/Miksus/flask-redmail)
 [![Documentation Status](https://readthedocs.org/projects/flask-redmail/badge/?version=latest)](https://red-mail.readthedocs.io/en/latest/)
 [![PyPI pyversions](https://badgen.net/pypi/python/flask-redmail)](https://pypi.org/project/flask-redmail/)
+
 ## What is it?
-Flask Red Mail is Flask extension for Red Mail email sending library.
+Flask Red Mail is a Flask extension for Red Mail.
 Red Mail is a powerful email sender library capable of including
 attachments from various formats, embedding images, parametrization
 with Jinja etc. This library harness Red Mail's power in order to 
@@ -20,6 +21,7 @@ make it trivial to:
 - Create email based *forgot password* functionality
 - Create Flask based email news letters
 
+Read more from [the docs](https://flask-redmail.readthedocs.io/),
 
 ---
 
