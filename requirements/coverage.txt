@@ -1,0 +1,7 @@
+# Testing
+pytest
+pytest-cov
+
+# Package requirements
+redmail
+flask
