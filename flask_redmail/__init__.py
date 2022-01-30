@@ -2,7 +2,7 @@
 from flask import current_app, _app_ctx_stack, Flask
 from redmail import EmailSender, send_email
 
-class RedMail(object):
+class RedMail:
     """Email sender for Flask
 
     Examples
@@ -14,7 +14,8 @@ class RedMail(object):
             from flask_redmail import RedMail
 
             app = Flask(__name__)
-            app.config.from_pyfile('the-config.cfg')
+            app.config["EMAIL_HOST"] = "localhost"
+            app.config["EMAIL_PORT"] = 0
             email = RedMail(app)
 
     Parameters
