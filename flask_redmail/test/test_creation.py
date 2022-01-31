@@ -28,13 +28,14 @@ def test_creation_missing():
     with pytest.raises(RuntimeError):
         email.init_app(app)
 
-def test_with_context():
+def test_with_context(cls_dummy_smtp):
     app = Flask("pytest")
     app.config["EMAIL_HOST"] = "localhost"
     app.config["EMAIL_PORT"] = 0
     app.config["EMAIL_USER"] = "me@example.com"
     app.config["EMAIL_PASSWORD"] = "1234"
     app.config["EMAIL_SENDER"] = "no-reply@example.com"
+    app.config["EMAIL_CLS_SMTP"] = cls_dummy_smtp
 
     email = RedMail()
     email.init_app(app)
@@ -54,11 +55,12 @@ def test_with_context():
         
     assert email.sender is None
 
-def test_with_context_defaults():
+def test_with_context_defaults(cls_dummy_smtp):
     app = Flask("pytest")
     app.config["EMAIL_HOST"] = "localhost"
     app.config["EMAIL_PORT"] = 0
     app.config["EMAIL_SENDER"] = "no-reply@example.com"
+    app.config["EMAIL_CLS_SMTP"] = cls_dummy_smtp
 
     email = RedMail(sender="some-reply@example.com", subject="An example")
     email.init_app(app)
