@@ -1,4 +1,5 @@
 
+import smtplib
 from flask import current_app, _app_ctx_stack, Flask
 from redmail import EmailSender, send_email
 
@@ -40,7 +41,18 @@ class RedMail:
         self.kws_sender = kwargs
 
     def init_app(self, app:Flask):
-        #app.config.setdefault('SQLITE3_DATABASE', ':memory:')
+        if not ("EMAIL_HOST" in app.config and "EMAIL_PORT" in app.config):
+            raise RuntimeError("Both EMAIL_HOST and EMAIL_PORT must be defined.")
+        
+        app.config.setdefault("EMAIL_USER", None)
+        app.config.setdefault("EMAIL_PASSWORD", None)
+
+        app.config.setdefault("EMAIL_SENDER", None)
+
+        app.config.setdefault("EMAIL_CLS_SMTP", smtplib.SMTP)
+        app.config.setdefault("EMAIL_USE_STARTTLS", True)
+        app.config.setdefault("EMAIL_SMTP_OPTIONS", {})
+        
         app.teardown_appcontext(self.teardown)
 
     def send(self, **kwargs):
@@ -76,8 +88,12 @@ class RedMail:
         email_sender = EmailSender(
             host=app_config['EMAIL_HOST'],
             port=app_config['EMAIL_PORT'],
-            user_name=app_config.get("EMAIL_USER"),
-            password=app_config.get("EMAIL_PASSWORD")
+            user_name=app_config["EMAIL_USER"],
+            password=app_config["EMAIL_PASSWORD"],
+
+            cls_smtp=app_config["EMAIL_CLS_SMTP"],
+            use_starttls=app_config["EMAIL_USE_STARTTLS"],
+            **app_config["EMAIL_SMTP_OPTIONS"]
         )
 
         email_sender.sender = app_config.get('EMAIL_SENDER')

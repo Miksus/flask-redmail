@@ -1,10 +1,13 @@
 
+import pytest
 from flask_redmail import RedMail
 from flask import Flask
 from redmail import EmailSender
 
 def test_creation():
     app = Flask("pytest")
+    app.config["EMAIL_HOST"] = "localhost"
+    app.config["EMAIL_PORT"] = 1
     email = RedMail()
     assert email.app is None
 
@@ -12,9 +15,18 @@ def test_creation():
     assert email.teardown in app.teardown_appcontext_funcs
 
     app = Flask("pytest")
+    app.config["EMAIL_HOST"] = "localhost"
+    app.config["EMAIL_PORT"] = 1
     email = RedMail(app)
     assert email.teardown in app.teardown_appcontext_funcs
 
+def test_creation_missing():
+    app = Flask("pytest")
+    with pytest.raises(RuntimeError):
+        RedMail(app)
+    email = RedMail()
+    with pytest.raises(RuntimeError):
+        email.init_app(app)
 
 def test_with_context():
     app = Flask("pytest")
