@@ -97,3 +97,24 @@ of the user when the user has verified the email:
     route ``create_user`` and create, for example, a column 
     ``verified_email`` that is false until the user has visited 
     ``verify_email`` route.
+
+
+Send emails from Gmail or Outlook
+---------------------------------
+
+If you wish to send emails from Gmail or Outlook, you may pass
+the appropriate host and port to the configuration:
+
+.. code-block:: python
+
+    from redmail import gmail, outlook
+
+    # Gmail
+    app.config["EMAIL_HOST"] = gmail.host
+    app.config["EMAIL_PORT"] = gmail.port
+
+    # Or outlook
+    app.config["EMAIL_HOST"] = outlook.host
+    app.config["EMAIL_PORT"] = outlook.port
+
+Read more about `email configurations from Red Mail's documentation <https://red-mail.readthedocs.io/en/latest/tutorials/config.html>`_.
