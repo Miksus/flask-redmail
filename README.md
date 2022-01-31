@@ -11,17 +11,60 @@
 [![PyPI pyversions](https://badgen.net/pypi/python/flask-redmail)](https://pypi.org/project/flask-redmail/)
 
 ## What is it?
-Flask Red Mail is a Flask extension for Red Mail.
+Flask Red Mail is a Flask extension for [Red Mail](https://github.com/Miksus/red-mail).
 Red Mail is a powerful email sender library capable of including
 attachments from various formats, embedding images, parametrization
-with Jinja etc. This library harness Red Mail's power in order to 
+with Jinja etc. This library harness the power of Red Mail in order to 
 make it trivial to:
 
 - Send verification emails to users
 - Create email based *forgot password* functionality
 - Create Flask based email news letters
+- Handle other needs for sending emails from a web application
 
-Read more from [the docs](https://flask-redmail.readthedocs.io/),
+Read more from [the docs](https://flask-redmail.readthedocs.io/).
+Read more about Red Mail from [the official documentation](https://red-mail.readthedocs.io/).
+
+## Installation
+
+Install the extension from PyPI:
+
+```console
+pip install flask-redmail
+```
+
+## Example
+
+Create a simple Flask application:
+
+```python
+import flask
+from flask_redmail import RedMail
+
+app = flask.Flask(__name__)
+email = RedMail(app)
+
+# Configure
+app.config["EMAIL_HOST"] = "localhost"
+app.config["EMAIL_PORT"] = 0
+
+# Optional
+app.config["EMAIL_USER"] = "me@example.com"
+app.config["EMAIL_PASSWORD"] = "<PASSWORD>"
+app.config["EMAIL_SENDER"] = "no-reply@example.com"
+```
+
+Use the extension:
+
+```python
+@app.route("/send")
+def send_email():
+    email.send(
+        subject="An example",
+        receivers=["you@example.com"],
+        html="<h1>An example email.</h1>"
+    )
+```
 
 ---
 
