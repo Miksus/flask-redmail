@@ -22,8 +22,14 @@ make it trivial to:
 - Create Flask based email news letters
 - Handle other needs for sending emails from a web application
 
-Read more from [the docs](https://flask-redmail.readthedocs.io/).
-Read more about Red Mail from [the official documentation](https://red-mail.readthedocs.io/).
+Links:
+
+- [Flask-Redmail's source code](https://github.com/Miksus/flask-redmail)
+- [Flask-Redmail's documentation](https://flask-redmail.readthedocs.io/)
+- [Flask-Redmail's releases (PyPI)](https://pypi.org/project/Flask-Redmail/)
+- [Red Mail's source code](https://github.com/Miksus/red-mail)
+- [Red Mail's documentation](https://red-mail.readthedocs.io/)
+- [Red Mail's releases (PyPI)](https://pypi.org/project/redmail/)
 
 ## Installation
 

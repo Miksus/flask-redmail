@@ -17,8 +17,14 @@ It makes easy to:
 - Create email based *forgot password* functionality
 - Create Flask based email news letters
 
-Read more from Red Mail from `its official documentation <https://red-mail.readthedocs.io/en/latest/>`_
-or visit `the source code <https://github.com/Miksus/red-mail>`_
+Links:
+
+- `Flask-Redmail's source code <https://github.com/Miksus/flask-redmail>`_
+- `Flask-Redmail's documentation <https://flask-redmail.readthedocs.io/>`_
+- `Flask-Redmail's releases (PyPI) <https://pypi.org/project/Flask-Redmail/>`_
+- `Red Mail's source code <https://github.com/Miksus/red-mail>`_
+- `Red Mail's documentation <https://red-mail.readthedocs.io/>`_
+- `Red Mail's releases (PyPI) <https://pypi.org/project/redmail/>`_
 
 Installation
 ------------
