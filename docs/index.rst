@@ -45,10 +45,10 @@ Then set configurations:
 
 .. code-block:: python
 
-    app.config["SMTP_HOST"] = "localhost"
-    app.config["SMTP_PORT"] = 0
+    app.config["EMAIL_HOST"] = "localhost"
+    app.config["EMAIL_PORT"] = 0
 
-    app.config["SMTP_SENDER"] = "no-reply@example.com"
+    app.config["EMAIL_SENDER"] = "no-reply@example.com"
 
 Then you may send emails:
 
