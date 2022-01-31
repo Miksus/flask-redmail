@@ -5,7 +5,7 @@ Tutorial
 
 This section covers basic tutorials of 
 Flask Red Mail. It is advised to consult
-`Red Mail's documentation <https://red-mail.readthedocs.io/en/latest/>`_
+`Red Mail's documentation <https://red-mail.readthedocs.io>`_
 for more advanced use of sending emails.
 
 initiation
@@ -56,15 +56,17 @@ those.
 
 Full list of configurations:
 
-================== =============== ============================================
-Configuration      Optional        Description
-================== =============== ============================================
-**EMAIL_HOST**     No              Host address of the SMTP server.
-**EMAIL_PORT**     No              Port of the SMTP server. Often 587.
-**EMAIL_USER**     Yes             User to authenticate to the SMTP server.
-**EMAIL_PASSWORD** Yes             Password to authenticate to the SMTP server.
-**EMAIL_SENDER**   Yes             Default sender address for emails.
-================== =============== ============================================
+======================= ======== ============================================================
+Configuration           Optional Description
+======================= ======== ============================================================
+**EMAIL_HOST**          No       Host address of the SMTP server.
+**EMAIL_PORT**          No       Port of the SMTP server. Often 587.
+**EMAIL_USER**          Yes      User to authenticate to the SMTP server.
+**EMAIL_PASSWORD**      Yes      Password to authenticate to the SMTP server.
+**EMAIL_SENDER**        Yes      Default sender address for emails.
+**EMAIL_USE_STARTLS**   Yes      Whether to use STARTLS. Defaults True.
+**EMAIL_CLS_SMTP**      Yes      SMTP class to use for connection. Defaults ``smtplib.SMTP``.
+======================= ======== ============================================================
 
 
 Sending Emails
@@ -87,8 +89,7 @@ After configuring, you may send emails simply using the
         )
 
 Method ```RedMail.send`` is simply a wrapper of the 
-method ``redmail.EmailSender.send``. Please read more
-`Red Mail's documentation <https://red-mail.readthedocs.io/en/latest/>`_.
+method ``redmail.EmailSender.send``.
 
 .. note::
 
@@ -119,8 +120,7 @@ for various purposes and set default subjects, receivers, senders, bodies etc.:
 
 The keyword arguments passed to :class:`.RedMail` are set as attributes to 
 ``redmail.EmailSender`` when creating the sender. These are stored as a dict in attribute 
-``kws_sender`` in RedMail instance. 
-Please read more from `Red Mail's documentation <https://red-mail.readthedocs.io/>`_.
+``kws_sender`` in RedMail instance.
 
 Note that the default values passed to initiation of ``RedMail`` overrides the 
 configurations from ``app.config`` and the arguments passed to ``email.send``
