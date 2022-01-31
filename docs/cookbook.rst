@@ -13,8 +13,12 @@ Verification Email
 
 Pre-requisites:
 
-- Basic undrestanding of Flask and Jinja templates
-- JWT
+- `pyjwt <https://pyjwt.readthedocs.io/en/latest/>`_
+- Suggested:
+
+    - `Flask-Login <https://flask-login.readthedocs.io/>`_
+    - `Flask-WTF <https://flask-wtf.readthedocs.io/>`_
+    - `Flask-Bcrypt <https://flask-bcrypt.readthedocs.io/>`_
 
 First, we create a verification email template
 ``templates/email/verify.html``:
@@ -29,7 +33,7 @@ First, we create a verification email template
     </p>
     <p>If you did not create an account, you may ignore this message.</p>
 
-Next, we will create a route that creates
+Next, we will create a route that will handle the user creation:
 
 .. code-block:: python
 
@@ -71,7 +75,8 @@ Next, we will create a route that creates
 
 Note that you also need to create ``create_user.html`` 
 and ``verify_email.html`` templates. It may also help 
-to use `Flask-WTF <https://flask-wtf.readthedocs.io/>`_.
+to use `Flask-WTF <https://flask-wtf.readthedocs.io/>`_
+to create needed HTML forms.
 
 Next, we will create a route to finalize the creation 
 of the user when the user has verified the email:
@@ -88,7 +93,7 @@ of the user when the user has verified the email:
 .. note::
 
     You may also pass other information using the secure tokens.
-    Alternatively, you may also actually create the user in the 
-    route ``create_user`` and set, for example, a column 
-    ``verified_email`` to False until the user has visited 
+    Alternatively, you may also create the user in the 
+    route ``create_user`` and create, for example, a column 
+    ``verified_email`` that is false until the user has visited 
     ``verify_email`` route.
