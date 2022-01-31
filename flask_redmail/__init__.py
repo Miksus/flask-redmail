@@ -67,7 +67,7 @@ class RedMail:
         if hasattr(ctx, 'redmail_sender'):
             # Pre v0.3.0 don't have contex management
             has_context = hasattr(ctx.redmail_sender, "close")
-            if has_context:
+            if has_context and ctx.redmail_sender.is_alive:
                 ctx.redmail_sender.close()
 
     @property
