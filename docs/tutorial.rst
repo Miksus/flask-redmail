@@ -8,7 +8,7 @@ Flask Red Mail. It is advised to consult
 `Red Mail's documentation <https://red-mail.readthedocs.io>`_
 for more advanced use of sending emails.
 
-initiation
+Initiation
 ----------
 
 To initiate Flask Red Mail, simply:
