@@ -53,9 +53,10 @@ class RedMail:
     def teardown(self, exception):
         ctx = _app_ctx_stack.top
         if hasattr(ctx, 'redmail_sender'):
-            #! TODO: When Red Mail supports opening and closing
-            # connections, the connection should be closed here
-            pass
+            # Pre v0.3.0 don't have contex management
+            has_context = hasattr(ctx.redmail_sender, "close")
+            if has_context:
+                ctx.redmail_sender.close()
 
     @property
     def sender(self):
@@ -64,8 +65,10 @@ class RedMail:
         if ctx is not None:
             if not hasattr(ctx, 'redmail_sender'):
                 ctx.redmail_sender = self._create_sender()
-                #! TODO: When Red Mail supports opening and closing
-                # connections, the connection should be opened here
+                # Pre v0.3.0 don't have contex management
+                has_context = hasattr(ctx.redmail_sender, "close")
+                if has_context:
+                    ctx.redmail_sender.connect()
             return ctx.redmail_sender
 
     def _create_sender(self) -> EmailSender:
