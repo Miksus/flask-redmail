@@ -22,11 +22,22 @@ class RedMail:
     ----------
     app : flask.Flask, optional
         Flask application
+    **kwargs : dict
+        Additional keyword arguments are passed to
+        ``redmail.EmailSender`` as attributes.
+
+    Attributes
+    ----------
+    kws_sender : dict
+        Keyword arguments passed to ``redmail.EmailSender``.
+        Read more from `Red Mail's documentation <https://red-mail.readthedocs.io/en/latest/references.html#redmail.EmailSender>`_
     """
-    def __init__(self, app:Flask=None):
+    def __init__(self, app:Flask=None, **kwargs):
         self.app = app
         if app is not None:
             self.init_app(app)
+
+        self.kws_sender = kwargs
 
     def init_app(self, app:Flask):
         #app.config.setdefault('SQLITE3_DATABASE', ':memory:')
@@ -41,12 +52,10 @@ class RedMail:
 
     def teardown(self, exception):
         ctx = _app_ctx_stack.top
-        #! TODO: When Red Mail supports opening and closing
-        # connections, the connection should be closed here
         if hasattr(ctx, 'redmail_sender'):
-            if hasattr(ctx.redmail_sender, "close"):
-                # Red Mail >= 0.3.0
-                ctx.redmail_sender.close()
+            #! TODO: When Red Mail supports opening and closing
+            # connections, the connection should be closed here
+            pass
 
     @property
     def sender(self):
@@ -67,8 +76,13 @@ class RedMail:
             user_name=app_config.get("EMAIL_USER"),
             password=app_config.get("EMAIL_PASSWORD")
         )
+
         email_sender.sender = app_config.get('EMAIL_SENDER')
 
         email_sender.templates_html = current_app.jinja_env
         email_sender.templates_text = current_app.jinja_env
+
+        for key, value in self.kws_sender.items():
+            setattr(email_sender, key, value)
+
         return email_sender

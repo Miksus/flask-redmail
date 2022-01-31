@@ -97,6 +97,35 @@ method ``redmail.EmailSender.send``. Please read more
     pass the relative path of the template as ``html_template``
     argument.
 
+Defaults
+--------
+
+In some cases it may be useful to create several instances of ``RedMail``
+for various purposes and set default subjects, receivers, senders, bodies etc.:
+
+.. code-block:: python
+
+    newsletter = RedMail(
+        subject="News letter",
+        sender="news@example.com",
+        html_template="email/news.html"
+    )
+
+    @app.route("/send-news")
+    def send_news():
+        newsletter.send(
+            receivers=["you@example.com"]
+        )
+
+The keyword arguments passed to :class:`.RedMail` are set as attributes to 
+``redmail.EmailSender`` when creating the sender. These are stored as a dict in attribute 
+``kws_sender`` in RedMail instance. 
+Please read more from `Red Mail's documentation <https://red-mail.readthedocs.io/>`_.
+
+Note that the default values passed to initiation of ``RedMail`` overrides the 
+configurations from ``app.config`` and the arguments passed to ``email.send``
+overrides both ``app.config`` and ``email.kws_sender``.
+
 What's Next?
 ------------
 

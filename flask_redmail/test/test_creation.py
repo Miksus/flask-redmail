@@ -41,3 +41,27 @@ def test_with_context():
         assert email.sender.templates_text is app.jinja_env
         
     assert email.sender is None
+
+def test_with_context_defaults():
+    app = Flask("pytest")
+    app.config["EMAIL_HOST"] = "localhost"
+    app.config["EMAIL_PORT"] = 0
+    app.config["EMAIL_SENDER"] = "no-reply@example.com"
+
+    email = RedMail(sender="some-reply@example.com", subject="An example")
+    email.init_app(app)
+    assert email.sender is None
+
+    with app.app_context():
+        assert email.sender.host == "localhost"
+        assert email.sender.port == 0
+        assert email.sender.user_name == None
+        assert email.sender.password == None
+
+        assert email.sender.sender == "some-reply@example.com"
+        assert email.sender.subject == "An example"
+
+        assert email.sender.templates_html is app.jinja_env
+        assert email.sender.templates_text is app.jinja_env
+        
+    assert email.sender is None
