@@ -8,6 +8,15 @@ Flask Red Mail. It is advised to consult
 `Red Mail's documentation <https://red-mail.readthedocs.io>`_
 for more advanced use of sending emails.
 
+Installation
+------------
+
+Install the package:
+
+.. code-block:: console
+
+    pip install flask-redmail
+
 Initiation
 ----------
 
