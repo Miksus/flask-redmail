@@ -2,10 +2,6 @@
 import smtplib
 from flask import current_app, _app_ctx_stack, Flask
 from redmail import EmailSender, send_email
-from packaging import version
-import redmail
-
-REDMAIL_VERSION = version.parse(redmail.__version__)
 
 class RedMail:
     """Email sender for Flask
@@ -89,21 +85,16 @@ class RedMail:
 
     def _create_sender(self) -> EmailSender:
         app_config = current_app.config
-        init_args = dict(
+        email_sender = EmailSender(
             host=app_config['EMAIL_HOST'],
             port=app_config['EMAIL_PORT'],
-            username=app_config["EMAIL_USER"],
+            user_name=app_config["EMAIL_USER"],
             password=app_config["EMAIL_PASSWORD"],
 
             cls_smtp=app_config["EMAIL_CLS_SMTP"],
             use_starttls=app_config["EMAIL_USE_STARTTLS"],
             **app_config["EMAIL_SMTP_OPTIONS"]
         )
-        if REDMAIL_VERSION < version.parse("0.4.0"):
-            # username is user_name in older versions
-            init_args["user_name"] = init_args.pop("username")
-
-        email_sender = EmailSender(**init_args)
 
         email_sender.sender = app_config.get('EMAIL_SENDER')
 
