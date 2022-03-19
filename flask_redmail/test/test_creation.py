@@ -32,7 +32,7 @@ def test_with_context(cls_dummy_smtp):
     app = Flask("pytest")
     app.config["EMAIL_HOST"] = "localhost"
     app.config["EMAIL_PORT"] = 0
-    app.config["EMAIL_USER"] = "me@example.com"
+    app.config["EMAIL_USERNAME"] = "me@example.com"
     app.config["EMAIL_PASSWORD"] = "1234"
     app.config["EMAIL_SENDER"] = "no-reply@example.com"
     app.config["EMAIL_CLS_SMTP"] = cls_dummy_smtp
