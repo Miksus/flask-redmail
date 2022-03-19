@@ -79,6 +79,7 @@ Then you may send emails:
 
    tutorial
    cookbook
+   versions
 
 Indices and tables
 ==================
