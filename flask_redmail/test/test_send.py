@@ -1,9 +1,11 @@
 import re
 from textwrap import dedent
+from packaging import version
 
 from flask_redmail import RedMail
 from flask import Flask
 from redmail import EmailSender
+import redmail
 
 def dummy_send(msg):
     pass
@@ -56,22 +58,45 @@ def test_send_defaults(cls_dummy_smtp):
             sender="sender@example.com",
         )
 
-        assert remove_email_content_id(str(msg)) == dedent("""
-        from: sender@example.com
-        subject: Subject
-        to: me@example.com
-        Content-Type: multipart/alternative;
-         boundary="===============<ID>=="
+        if version.parse(redmail.__version__) < version.parse("0.4.0"):
+            assert remove_email_content_id(str(msg)) == dedent("""
+            from: sender@example.com
+            subject: Subject
+            to: me@example.com
+            Content-Type: multipart/alternative;
+             boundary="===============<ID>=="
 
-        --===============<ID>==
-        Content-Type: text/html; charset="utf-8"
-        Content-Transfer-Encoding: 7bit
-        MIME-Version: 1.0
+            --===============<ID>==
+            Content-Type: text/html; charset="utf-8"
+            Content-Transfer-Encoding: 7bit
+            MIME-Version: 1.0
 
-        <h1>An example</h1>
+            <h1>An example</h1>
 
-        --===============<ID>==--
-        """)[1:]
+            --===============<ID>==--
+            """)[1:]
+        else:
+            assert remove_email_content_id(str(msg)) == dedent("""
+            from: sender@example.com
+            subject: Subject
+            to: me@example.com
+            Content-Type: multipart/mixed; boundary="===============<ID>=="
+
+            --===============<ID>==
+            Content-Type: multipart/alternative;
+             boundary="===============<ID>=="
+
+            --===============<ID>==
+            Content-Type: text/html; charset="utf-8"
+            Content-Transfer-Encoding: 7bit
+            MIME-Version: 1.0
+
+            <h1>An example</h1>
+
+            --===============<ID>==--
+
+            --===============<ID>==--
+            """)[1:]
 
         
     assert email.sender is None
