@@ -36,6 +36,6 @@ setup(
 
     install_requires = [
         'Flask',
-        'redmail'
+        'redmail>=0.4.0'
     ],
 )

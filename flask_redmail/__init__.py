@@ -88,7 +88,7 @@ class RedMail:
         email_sender = EmailSender(
             host=app_config['EMAIL_HOST'],
             port=app_config['EMAIL_PORT'],
-            user_name=app_config["EMAIL_USER"],
+            username=app_config["EMAIL_USER"],
             password=app_config["EMAIL_PASSWORD"],
 
             cls_smtp=app_config["EMAIL_CLS_SMTP"],
