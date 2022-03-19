@@ -1,5 +1,6 @@
 
 import smtplib
+import warnings
 from flask import current_app, _app_ctx_stack, Flask
 from redmail import EmailSender, send_email
 
@@ -44,7 +45,12 @@ class RedMail:
         if not ("EMAIL_HOST" in app.config and "EMAIL_PORT" in app.config):
             raise RuntimeError("Both EMAIL_HOST and EMAIL_PORT must be defined.")
         
-        app.config.setdefault("EMAIL_USER", None)
+        username = None
+        if "EMAIL_USER" in app.config:
+            warnings.warn("Configuration EMAIL_USER will be removed in the future. Please use EMAIL_USERNAME instead.", FutureWarning)
+            username = app.config.get("EMAIL_USER")
+
+        app.config.setdefault("EMAIL_USERNAME", username)
         app.config.setdefault("EMAIL_PASSWORD", None)
 
         app.config.setdefault("EMAIL_SENDER", None)
@@ -88,7 +94,7 @@ class RedMail:
         email_sender = EmailSender(
             host=app_config['EMAIL_HOST'],
             port=app_config['EMAIL_PORT'],
-            user_name=app_config["EMAIL_USER"],
+            user_name=app_config["EMAIL_USERNAME"],
             password=app_config["EMAIL_PASSWORD"],
 
             cls_smtp=app_config["EMAIL_CLS_SMTP"],
