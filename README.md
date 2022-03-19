@@ -55,7 +55,7 @@ app.config["EMAIL_HOST"] = "localhost"
 app.config["EMAIL_PORT"] = 0
 
 # Optional
-app.config["EMAIL_USER"] = "me@example.com"
+app.config["EMAIL_USERNAME"] = "me@example.com"
 app.config["EMAIL_PASSWORD"] = "<PASSWORD>"
 app.config["EMAIL_SENDER"] = "no-reply@example.com"
 ```

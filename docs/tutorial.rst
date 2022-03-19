@@ -53,13 +53,13 @@ these simply:
 
     app.config["EMAIL_HOST"] = "<SMTP HOST>"
     app.config["EMAIL_PORT"] = 587
-    app.config["EMAIL_USER"] = "me@example.com"
+    app.config["EMAIL_USERNAME"] = "me@example.com"
     app.config["EMAIL_PASSWORD"] = "<PASSWORD>"
 
     # Set default sender
     app.config["EMAIL_SENDER"] = "no-reply@example.com"
 
-Note that you don't have to specify ``EMAIL_USER`` and
+Note that you don't have to specify ``EMAIL_USERNAME`` and
 ``EMAIL_PASSWORD`` if your SMTP server does not require
 those.
 
@@ -70,7 +70,7 @@ Configuration           Optional Description
 ======================= ======== ============================================================
 **EMAIL_HOST**          No       Host address of the SMTP server.
 **EMAIL_PORT**          No       Port of the SMTP server. Often 587.
-**EMAIL_USER**          Yes      User to authenticate to the SMTP server.
+**EMAIL_USERNAME**      Yes      User to authenticate to the SMTP server.
 **EMAIL_PASSWORD**      Yes      Password to authenticate to the SMTP server.
 **EMAIL_SENDER**        Yes      Default sender address for emails.
 **EMAIL_USE_STARTLS**   Yes      Whether to use STARTLS. Defaults True.
